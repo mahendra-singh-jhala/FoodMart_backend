@@ -8,3 +8,5 @@ const connectdb = async () => {
         console.log("MongoDB Not Connected", error)
     }
 }
+
+module.exports = connectdb
