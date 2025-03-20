@@ -31,17 +31,12 @@ const productSchema = new mongoose.Schema({
         required: true
     },
 
-    brand: {
-        type: String
-    },
-
     imageUrl: {
         type: String
     },
-
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Categories"
-    }
     
 }, { timestamps: true})
+
+const Product = mongoose.model("Products", productSchema)
+
+module.exports = Product
