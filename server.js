@@ -2,6 +2,8 @@ const express = require("express")
 const cors = require("cors")
 const connectdb = require("./config/db")
 const authRouter = require("./routes/authRoutes")
+const productRouter = require("./routes/productRoutes")
+
 
 // load enviorment variable
 require("dotenv").config()
@@ -21,6 +23,7 @@ app.use(cors({
 
 // routes
 app.use("/api/auth", authRouter)
+app.use("/api/product", productRouter)
 
 PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
