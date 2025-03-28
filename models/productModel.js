@@ -6,6 +6,11 @@ const productSchema = new mongoose.Schema({
         required: true
     },
 
+    food: {
+        type: String,
+        required: true
+    },
+
     description: {
         type: String,
         required: true
