@@ -4,27 +4,27 @@ const chefSchema = new mongoose.Schema({
     name: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        require: true
+        required: true
     },
     bio: {
         type: String,
-        require: true
+        required: true
     },
     gender: {
         type: ["Male", "Female"],
-        require: true
+        required: true
     },
     experience: {
         type: Number,
-        require: true
+        required: true
     },
     specialties: {
         type: String,
-        require: true
+        required: true
     },
     contact: {
         type: Number,
-        require: true
+        required: true
     }
 
 }, { timestamps: true})

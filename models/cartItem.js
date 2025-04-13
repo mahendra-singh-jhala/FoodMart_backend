@@ -4,21 +4,21 @@ const CartItemSchema = new mongoose.Schema({
     cart: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Cart",
-        require: true
+        required: true
     },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Products",
-        require: true
+        required: true
     },
     quantity: {
         type: Number,
-        require: true,
+        required: true,
         default: 1
     },
     price: {
         type: Number,
-        require: true,
+        required: true,
         default: 0
     },
     discountedPrice: {
@@ -28,7 +28,7 @@ const CartItemSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        require: true
+        required: true
     }
 
 }, { timestamps: true })
