@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const chefSchema = new mongoose.Schema({
     name: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         require: true
     },
     bio: {
@@ -13,6 +14,18 @@ const chefSchema = new mongoose.Schema({
         type: ["Male", "Female"],
         require: true
     },
+    experience: {
+        type: Number,
+        require: true
+    },
+    specialties: {
+        type: String,
+        require: true
+    },
+    contact: {
+        type: Number,
+        require: true
+    }
 
 }, { timestamps: true})
 
