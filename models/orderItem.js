@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 
 const orderItemSchema = new mongoose.Schema({
-    product: {
+    food: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Products",
+        ref: "Foods",
         required: true
     },
     price: {
