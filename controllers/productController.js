@@ -1,9 +1,9 @@
-const Product = require("../models/productModel")
+const Food = require("../models/foodModel")
 
-exports.CreateProduct = async (req, res) => {
+exports.CreateFoodProduct = async (req, res) => {
     const {title, description, price, food, discountedPrice, discountPersent, quantity, imageUrl} = req.body
     try {
-        const product = Product({
+        const foodProduct = Food({
             title,
             description,
             food,
@@ -14,10 +14,10 @@ exports.CreateProduct = async (req, res) => {
             imageUrl
         })
 
-        await product.save()
+        await foodProduct.save()
         res.status(200).json({
-            message: "Product Create Sucssesfully",
-            product
+            message: "Food Create Sucssesfully",
+            foodProduct
         })
     } catch (error) {
         res.status(500).send({
@@ -27,30 +27,30 @@ exports.CreateProduct = async (req, res) => {
     }
 }
 
-exports.updateProduct = async (req, res) => {
+exports.updateFoodProduct = async (req, res) => {
     try {
-        const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const updateFoodProduct = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true })
         res.status(200).json({
-            message: "Product Updated Sucssesfully",
-            updateProduct
+            message: "Food Updated Sucssesfully",
+            updateFoodProduct
         })
     } catch (error) {
         res.status(500).json({
-            message: 'Error to updating Product'
+            message: 'Error to updating Food'
         })
     }
 }
 
-exports.deleteProduct = async (req, res) => {
-    const productId = req.params.id
+exports.deleteFoodProduct = async (req, res) => {
+    const foodId = req.params.id
     try {
-        await Product.findByIdAndDelete(productId)
+        await Food.findByIdAndDelete(foodId)
         res.status(200).json({
-            message: "Product delete Sucssesfully"
+            message: "Food delete Sucssesfully"
         })
     } catch (error) {
         res.status(500).json({
-            message: 'Error to deleting Product'
+            message: 'Error to deleting Food'
         })
     }
 }
