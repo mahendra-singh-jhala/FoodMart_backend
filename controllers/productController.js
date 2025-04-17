@@ -21,7 +21,7 @@ exports.CreateFoodProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(500).send({
-            message: "Error: User login failed",
+            message: "Error: To Create FoodProduct",
             error: error.message
         })
     }

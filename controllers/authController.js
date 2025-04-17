@@ -1,6 +1,7 @@
 const User = require("../models/userModel")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const Cart = require("../models/cartModel")
 
 // Loard enviornment variable
 require("dotenv").config()
@@ -28,6 +29,11 @@ exports.register = async (req, res) => {
         })
         await newUser.save();
 
+        const cart = new Cart({
+            user: newUser._id
+        })
+
+        await cart.save();
         // Respond with success message
         res.status(200).json({
             message: "User registered successfully",

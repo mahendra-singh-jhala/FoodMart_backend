@@ -3,6 +3,7 @@ const cors = require("cors")
 const connectdb = require("./config/db")
 const authRouter = require("./routes/authRoutes")
 const productRouter = require("./routes/productRoutes")
+const cartRouter = require("./routes/cartRoutes")
 
 
 // load enviorment variable
@@ -24,6 +25,7 @@ app.use(cors({
 // routes
 app.use("/api/auth", authRouter)
 app.use("/api/product", productRouter)
+app.use("/api/cart", cartRouter)
 
 PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
