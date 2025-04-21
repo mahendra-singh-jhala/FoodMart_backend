@@ -96,3 +96,53 @@ exports.addCartItem = async (req, res) => {
         })
     }
 }
+
+exports.updateCartItem = async (req, res) => {
+    const { quantity } = req.body;
+    const foodProductId = req.params.id
+    try {
+        const cartItem = await CartItems.findByIdAndUpdate(foodProductId, { quantity: quantity}, {new: true}).populate("food")
+        if (!cartItem) {
+            return res.status(404).json({
+                message: "CartItem not found"
+            });
+        }
+
+        let price = cartItem?.food?.price;
+        let discountedPrice = cartItem?.food?.discountedPrice
+
+        price = cartItem.quantity * price
+        discountedPrice = cartItem.quantity * discountedPrice
+
+        cartItem.price = price
+        cartItem.discountedPrice = discountedPrice
+
+        await cartItem.save();
+        res.status(200).json({
+            message: "Cart item updated successfully",
+            updatedCartItem: cartItem
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        })
+    }
+}
+
+
+exports.removeCartItem = async (req, res) => {
+    const cartItemId = req.params.id
+    try {
+        await CartItem.findByIdAndDelete(cartItemId)
+        res.status(200).json({
+            message: "CartItem removed successfully",
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        })
+    }
+}
