@@ -102,9 +102,33 @@ exports.usersOrder = async (req, res) => {
     }
 }
 
-// exports.findOrderById = async (req, res) => {
+exports.findOrderById = async (req, res) => {
+    const orderId = req.params.id;
+    try {
+        const order = await Order.findById(orderId)
+            .populate("user")
+            .populate({  path: "orderItem", populate: { path: "food" } }).lean()
+            .populate("shippingAddress")
+        
+        if(!order) {
+            return res.status(404).json({
+                message: "No order found"
+            })
+        }
 
-// }
+        res.status(200).json({
+            message: "Order fetched successfully",
+            order
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Internal Server Error. Please try again Later',
+            error: error.message
+        })
+    }
+}
 
 
 
