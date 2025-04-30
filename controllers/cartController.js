@@ -11,7 +11,7 @@ exports.findUserCart = async (req, res) => {
                 message: "Cart Not found"
             })
         }
-        let cartItems = await CartItems.findOne({ _id: cart._id }).populate("food")
+        let cartItems = await CartItems.find({ cart: cart._id }).populate("food")
         cart.cartItem = cartItems
 
         let totalPrice = 0
@@ -42,7 +42,6 @@ exports.findUserCart = async (req, res) => {
     }
 }
 
-
 exports.addCartItem = async (req, res) => {
     const userId = req.user._id;
     const { foodProductId } = req.body
@@ -61,7 +60,7 @@ exports.addCartItem = async (req, res) => {
             });
         }
 
-        const isPresent = await CartItems.find({ cart: cart._id, food: foodProductId })
+        const isPresent = await CartItems.findOne({ cart: cart._id, food: foodProductId })
         if (isPresent) {
             isPresent.quantity += 1;
             await isPresent.save();

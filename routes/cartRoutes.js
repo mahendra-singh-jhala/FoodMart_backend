@@ -1,10 +1,11 @@
 const express = require("express")
 const cartController = require("../controllers/cartController")
+const { signIn } = require("../middleware/authMiddleware")
 const router = express.Router();
 
-router.get("/", cartController.findUserCart)
+router.get("/", signIn, cartController.findUserCart)
 
-router.put("/add", cartController.addCartItem)
+router.put("/add", signIn, cartController.addCartItem)
 
 router.put("/:id", cartController.updateCartItem)
 

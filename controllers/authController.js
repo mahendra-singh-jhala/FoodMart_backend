@@ -37,7 +37,8 @@ exports.register = async (req, res) => {
         // Respond with success message
         res.status(200).json({
             message: "User registered successfully",
-            user: newUser
+            user: newUser,
+            cart
         })
     } catch (error) {
         res.status(500).send({
