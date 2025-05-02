@@ -75,14 +75,12 @@ exports.createOrder = async (req, res) => {
             error: error.message
         })
     }
-
-
 }
 
 exports.usersOrder = async (req, res) => {
     const userId = req.user.id;
     try {
-        const orders = await Order.find({ user: userId}).populate({  path: "orderItem", populate: { path: "food" } }).lean()
+        const orders = await Order.find({ user: userId}).populate({  path: "orderItems", populate: { path: "food" } }).lean()
         if(!orders ) {
             return res.status(404).json({
                 message: "No order found"
@@ -106,7 +104,7 @@ exports.findOrderById = async (req, res) => {
     try {
         const order = await Order.findById(orderId)
             .populate("user")
-            .populate({  path: "orderItem", populate: { path: "food" } }).lean()
+            .populate({  path: "orderItems", populate: { path: "food" } }).lean()
             .populate("shippingAddress")
         
         if(!order) {
@@ -119,8 +117,6 @@ exports.findOrderById = async (req, res) => {
             message: "Order fetched successfully",
             order
         })
-
-
     } catch (error) {
         res.status(500).json({
             message: 'Internal Server Error. Please try again Later',

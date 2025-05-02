@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.post("/", signIn, orderController.createOrder)
 
-router.get("/user", orderController.usersOrder)
+router.get("/userOrder", signIn, orderController.usersOrder)
 
-router.get("/:id", orderController.findOrderById)
+router.get("/:id", signIn, orderController.findOrderById)
 
 module.exports = router
