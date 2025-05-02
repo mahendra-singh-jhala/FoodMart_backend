@@ -6,11 +6,11 @@ const orderSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    orderItem: {
+    orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "orderItems",
         required: true
-    },
+    }],
     orderDate: {
         type: Date,
         required: true,
@@ -35,7 +35,7 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    totalDiscountPrice: {
+    totalDiscountedPrice: {
         type: Number,
         required: true
     },

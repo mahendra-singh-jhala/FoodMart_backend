@@ -2,7 +2,6 @@ const Address = require("../models/addressModel")
 const Cart = require("../models/cartModel")
 const CartItem = require("../models/cartItem")
 const OrderItem = require("../models/orderItem")
-const order = require("../models/orderModel")
 const Order = require("../models/orderModel")
 
 exports.createOrder = async (req, res) => {

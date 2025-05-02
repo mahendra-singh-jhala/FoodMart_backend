@@ -1,10 +1,10 @@
 const express = require("express")
 const orderController = require("../controllers/orderController")
-
+const { signIn } = require("../middleware/authMiddleware")
 const router = express.Router()
 
 
-router.post("/", orderController.createOrder)
+router.post("/", signIn, orderController.createOrder)
 
 router.get("/user", orderController.usersOrder)
 

@@ -33,7 +33,18 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'chef', 'admin'],
         required: true,
         default: 'user',
-    }
+    },
+
+    addresses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Addresses"
+    }],
+
+    paymentInfo: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Payment_Info"
+    }]
+
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)
