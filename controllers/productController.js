@@ -1,5 +1,6 @@
 const Food = require("../models/foodModel")
 
+// Controller function for create product
 exports.CreateFoodProduct = async (req, res) => {
     const {title, description, price, food, discountedPrice, discountPersent, quantity, imageUrl} = req.body
     try {
@@ -27,6 +28,7 @@ exports.CreateFoodProduct = async (req, res) => {
     }
 }
 
+// Controller function for update product
 exports.updateFoodProduct = async (req, res) => {
     try {
         const updateFoodProduct = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -41,6 +43,7 @@ exports.updateFoodProduct = async (req, res) => {
     }
 }
 
+// Controller function for delete product
 exports.deleteFoodProduct = async (req, res) => {
     const foodId = req.params.id
     try {

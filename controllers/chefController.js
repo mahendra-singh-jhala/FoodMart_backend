@@ -1,5 +1,6 @@
 const Chef = require("../models/chefModel")
 
+// Controller function for Update chef profile
 exports.updateProfile = async (req, res) => {
     const { bio, gender, experience, specialties, contact } = req.body
     const userId = req.body.userId

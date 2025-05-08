@@ -4,6 +4,7 @@ const CartItem = require("../models/cartItem")
 const OrderItem = require("../models/orderItem")
 const Order = require("../models/orderModel")
 
+// Controller function for create order
 exports.createOrder = async (req, res) => {
     const userId = req.user._id
     const user = req.user
@@ -77,6 +78,7 @@ exports.createOrder = async (req, res) => {
     }
 }
 
+// Controller function for find user order
 exports.usersOrder = async (req, res) => {
     const userId = req.user.id;
     try {
@@ -99,6 +101,7 @@ exports.usersOrder = async (req, res) => {
     }
 }
 
+// Controller function for find order by ID
 exports.findOrderById = async (req, res) => {
     const orderId = req.params.id;
     try {

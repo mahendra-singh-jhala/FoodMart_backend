@@ -2,6 +2,7 @@ const Cart = require("../models/cartModel")
 const CartItems = require("../models/cartItem")
 const FoodProduct = require("../models/foodModel")
 
+// Controller function for find user cart
 exports.findUserCart = async (req, res) => {
     const userId = req.user._id
     try {
@@ -42,6 +43,7 @@ exports.findUserCart = async (req, res) => {
     }
 }
 
+// Controller function for add item to cart
 exports.addCartItem = async (req, res) => {
     const userId = req.user._id;
     const { foodProductId } = req.body
@@ -96,6 +98,7 @@ exports.addCartItem = async (req, res) => {
     }
 }
 
+// Controller function for update cartItem
 exports.updateCartItem = async (req, res) => {
     const { quantity } = req.body;
     const foodProductId = req.params.id
@@ -130,7 +133,7 @@ exports.updateCartItem = async (req, res) => {
     }
 }
 
-
+// Controller function for remove cartItem
 exports.removeCartItem = async (req, res) => {
     const cartItemId = req.params.id
     try {
