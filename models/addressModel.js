@@ -35,7 +35,7 @@ const AddressSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-const Address = mongoose.model("Address", AddressSchema)
+const Addresses = mongoose.model("Addresses", AddressSchema)
 
-module.exports = Address
+module.exports = Addresses
 

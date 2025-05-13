@@ -9,7 +9,7 @@ exports.getUserById = async (req, res) => {
         .exec();
         if(!user) {
             return res.status(404).json({
-                message: "User Not FOund"
+                message: "User Not Found"
             })
         }
 
