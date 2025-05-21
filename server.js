@@ -7,7 +7,6 @@ const cartRouter = require("./routes/cartRoutes")
 const orderRouter = require("./routes/orderRoutes")
 const userRouter = require("./routes/userRoutes")
 
-
 // load enviorment variable
 require("dotenv").config()
 

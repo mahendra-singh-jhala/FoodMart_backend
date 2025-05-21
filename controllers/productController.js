@@ -28,6 +28,43 @@ exports.CreateFoodProduct = async (req, res) => {
     }
 }
 
+exports.getAllProduct = async (req, res) => {
+    try {
+        const foodProduct = await Food.find();
+
+        res.status(200).json({
+            message: "Food Product Find Successfully",
+            foodProduct
+        })
+    } catch(error) {
+        res.status(500).json({
+            message: 'Error to finding Food Product'
+        })
+    }
+}
+
+exports.findProductById = async (req, res) => {
+    const productId = req.params.id
+    try {
+        const foodProduct = await Food.findById(productId)
+        if (!foodProduct) {
+            return res.status(400).json({
+                message: "FoodProduct Not Found"
+            })
+        }
+
+        res.status(200).json({
+            message: "Food Product Find Successfully",
+            foodProduct
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error to finding Food Product By Id'
+        })
+    }
+}
+
 // Controller function for update product
 exports.updateFoodProduct = async (req, res) => {
     try {
@@ -38,7 +75,7 @@ exports.updateFoodProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(500).json({
-            message: 'Error to updating Food'
+            message: 'Error to updating Food Product'
         })
     }
 }
@@ -53,7 +90,7 @@ exports.deleteFoodProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(500).json({
-            message: 'Error to deleting Food'
+            message: 'Error to deleting Food Product'
         })
     }
 }

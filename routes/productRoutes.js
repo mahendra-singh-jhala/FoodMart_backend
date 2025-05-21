@@ -1,7 +1,14 @@
 const express = require("express")
 const productController = require("../controllers/productController")
+const { signIn } = require("../middleware/authMiddleware")
 
 const router = express.Router();
+
+// This route handles GET requests for get all products
+router.get("/", productController.getAllProduct)
+
+// This route handles GET requests for get product by Id
+router.get("/id/:id", signIn, productController.findProductById)
 
 // This route handles POST requests for create product
 router.post("/create", productController.CreateFoodProduct)
