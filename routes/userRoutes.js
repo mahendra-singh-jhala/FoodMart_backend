@@ -7,4 +7,8 @@ const router = express.Router()
 // This route handles GET requests for get user by Id
 router.get("/user", signIn, userController.getUserById)
 
+// This route handles PUT requests for update user
+router.put("/profileUpdate", userController.userProfileUpdate)
+
+
 module.exports = router
