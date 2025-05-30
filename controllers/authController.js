@@ -8,7 +8,7 @@ require("dotenv").config()
 
 // Controller function for user registration
 exports.register = async (req, res) => {
-    const { username, firstname, lastname, email, password } = req.body
+    const { username, firstname, lastname, email, password, role } = req.body
     try {
         const existingUser = await User.findOne({ email })
         if (existingUser) {
@@ -25,7 +25,8 @@ exports.register = async (req, res) => {
             firstname,
             lastname,
             email,
-            password: hashPassword
+            password: hashPassword,
+            role
         })
         await newUser.save();
 

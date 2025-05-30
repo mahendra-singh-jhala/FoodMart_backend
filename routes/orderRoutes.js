@@ -7,7 +7,7 @@ const router = express.Router()
 router.post("/", signIn, orderController.createOrder)
 
 // This route handles GET requests for get user order
-router.get("/userOrder", signIn, orderController.usersOrder)
+router.get("/", signIn, orderController.usersOrder)
 
 // This route handles GET requests for get order by Id
 router.get("/:id", signIn, orderController.findOrderById)
