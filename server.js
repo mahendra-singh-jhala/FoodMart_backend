@@ -6,6 +6,7 @@ const productRouter = require("./routes/productRoutes")
 const cartRouter = require("./routes/cartRoutes")
 const orderRouter = require("./routes/orderRoutes")
 const userRouter = require("./routes/userRoutes")
+const chefRouter = require("./routes/chefRoutes")
 
 // load enviorment variable
 require("dotenv").config()
@@ -29,6 +30,7 @@ app.use("/api/product", productRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/users", userRouter)
+app.use("/api/chefs", chefRouter)
 
 PORT = process.env.PORT || 5000
 app.listen(PORT, () => {

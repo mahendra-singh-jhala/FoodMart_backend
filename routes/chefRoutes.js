@@ -5,3 +5,5 @@ const router = express.Router();
 
 // This route handles UPDATE chef Profile
 router.put("/updateProfile", chefController.updateProfile)
+
+module.exports = router

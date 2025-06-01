@@ -28,14 +28,14 @@ exports.getUserById = async (req, res) => {
 exports.userProfileUpdate = async (req, res) => {
     const { username, firstname, lastname, email } = req.body
     const userId = req.body.userId
-    const updateData = { username, firstname, lastname, email }
 
+    const updateData = { username, firstname, lastname, email }
     try {
             const updateProfile = User.findByIdAndUpdate(userId, updateData, {new: true})
     
             if(!updateProfile) {
                 return res.status(404).json({
-                    message: "user Not Found"
+                    message: "User Not Found"
                 })
             }
     
