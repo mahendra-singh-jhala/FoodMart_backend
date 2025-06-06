@@ -13,7 +13,7 @@ const bakeryModel = new mongoose.Schema({
 
     bakeryProduct: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "bakeryProduct",
+        ref: "BakeryProduct",
         required: true
     }],
 
@@ -23,6 +23,6 @@ const bakeryModel = new mongoose.Schema({
     }
 })
 
-const Bakery = mongoose.model("bakery", bakeryModel)
+const Bakery = mongoose.model("Bakery", bakeryModel)
 
 module.exports = Bakery
