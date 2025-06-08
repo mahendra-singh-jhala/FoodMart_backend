@@ -3,31 +3,31 @@ const mongoose = require("mongoose")
 const AddressSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        require: true
+        required: true
     },
     lastName: {
         type: String,
-        require: true
+        required: true
     },
     address: {
         type: String,
-        require: true
+        required: true
     },
     city: {
         type: String,
-        require: true
+        required: true
     },
     state: {
         type: String,
-        require: true
+        required: true
     },
     zipCode: {
         type: Number,
-        require: true
+        required: true
     },
     phoneNumber: {
         type: Number,
-        require: true
+        required: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

@@ -42,8 +42,7 @@ const bakeryProductModel = new mongoose.Schema({
 
     bakery: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Bakery",
-        required: ture
+        ref: "Bakery"
     }
 }, { timestamps: true })
 
