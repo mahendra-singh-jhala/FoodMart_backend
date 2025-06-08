@@ -1,8 +1,35 @@
+const Bakery = require("../models/bakeryModel");
+const BakeryProduct = require("../models/bakeryProduct");
 
 exports.createBakery = async (res, req) => {
+    const { name, description, bakeryImage } = req.body
+    try {
+        const bakery = new Bakery({
+            name,
+            description,
+            bakeryImage
+        })
+        await bakery.save();
 
+        const bakeryProduct = new BakeryProduct({
+            bakery: bakery._id
+        })
+        await bakeryProduct.save();
+
+        res.status(200).json({
+            message: "Successfully create a bakery",
+            bakery,
+            bakeryProduct
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        })
+    }
 }
 
 exports.getBakery = async (res, req) => {
-
+    
 }
