@@ -1,6 +1,7 @@
 const Bakery = require("../models/bakeryModel");
 const BakeryProduct = require("../models/bakeryProduct");
 
+// Controller function for create bakery
 exports.createBakery = async (res, req) => {
     const { name, description, bakeryImage } = req.body
     try {
@@ -30,6 +31,7 @@ exports.createBakery = async (res, req) => {
     }
 }
 
+// Controller function for get bakery
 exports.getBakery = async (res, req) => {
     try {
         const bakery = await Bakery.find()

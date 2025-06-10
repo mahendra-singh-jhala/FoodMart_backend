@@ -32,7 +32,8 @@ app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/users", userRouter)
 app.use("/api/chefs", chefRouter)
-app.use("/api/bakwry", bakeryRouter)
+app.use("/api/bakery", bakeryRouter)
+
 
 PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
