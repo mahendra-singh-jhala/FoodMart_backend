@@ -2,12 +2,15 @@ const Bakery = require("../models/bakeryModel");
 const BakeryProduct = require("../models/bakeryProduct");
 
 // Controller function for create bakery
-exports.createBakery = async (res, req) => {
-    const { name, description, bakeryImage } = req.body
+exports.createBakery = async (req, res) => {
+    const { name, email, address, phone, openingHours, bakeryImage } = req.body
     try {
         const bakery = new Bakery({
             name,
-            description,
+            email,
+            address,
+            phone,
+            openingHours,
             bakeryImage
         })
         await bakery.save();

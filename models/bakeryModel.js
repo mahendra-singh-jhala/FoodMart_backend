@@ -6,7 +6,27 @@ const bakeryModel = new mongoose.Schema({
         required: true
     },
 
-    description: {
+    address: {
+        type: String,
+        required: true
+    },
+
+    phone: {
+        type: Number,
+        required: true
+    },
+
+    email: {
+        type: String,
+        required: true
+    },
+
+    openingHours: {
+        type: String,
+        default: "24 hour"
+    },
+
+    bakeryImage: {
         type: String,
         required: true
     },
@@ -15,12 +35,7 @@ const bakeryModel = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "BakeryProduct",
         required: true
-    }],
-
-    bakeryImage: {
-        type: String,
-        required: true
-    }
+    }]
 })
 
 const Bakery = mongoose.model("Bakery", bakeryModel)

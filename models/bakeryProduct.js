@@ -6,9 +6,10 @@ const bakeryProductModel = new mongoose.Schema({
         required: true
     },
 
-    food: {
+    Item: {
         type: String,
-        required: true
+        required: true,
+        enum: ["bread", "cake", "cookie", "pastry", "other"]
     },
 
     description: {
@@ -31,9 +32,9 @@ const bakeryProductModel = new mongoose.Schema({
         required: true
     },
 
-    quantity: {
-        type: Number,
-        required: true
+    available: {
+        type: Boolean,
+        default: true
     },
 
     imageUrl: {
@@ -44,6 +45,7 @@ const bakeryProductModel = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Bakery"
     }
+
 }, { timestamps: true })
 
 const BakeryProduct = mongoose.model("BakeryProduct", bakeryProductModel)
