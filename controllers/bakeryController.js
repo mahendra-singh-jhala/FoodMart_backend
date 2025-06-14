@@ -40,7 +40,7 @@ exports.getBakery = async (res, req) => {
         const bakery = await Bakery.find()
 
         res.status(200).json({
-            message: "Successfully get bakery",
+            message: "bakery get Successfully",
             bakery
         })
         

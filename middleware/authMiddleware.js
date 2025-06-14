@@ -36,3 +36,48 @@ exports.signIn = async (req, res, next) => {
         });
     }
 }
+
+export const isAdmin = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (user.role !== "admin") {
+            return res.status(401).send("Unauthorized");
+        }
+        next();
+    } catch (error) {
+        res.status(401).json({ 
+            message: "Invalid token", 
+            error: error.message 
+        });
+    }
+};
+
+export const isChef = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (user.role !== "chef") {
+            return res.status(401).send("Unauthorized");
+        }
+        next();
+    } catch (error) {
+        res.status(401).json({ 
+            message: "Invalid token", 
+            error: error.message 
+        });
+    }
+};
+
+export const isBakery = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (user.role !== "bakery") {
+            return res.status(401).send("Unauthorized");
+        }
+        next();
+    } catch (error) {
+        res.status(401).json({ 
+            message: "Invalid token", 
+            error: error.message 
+        });
+    }
+};
