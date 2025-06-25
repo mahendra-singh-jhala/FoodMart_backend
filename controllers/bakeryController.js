@@ -25,7 +25,6 @@ exports.createBakery = async (req, res) => {
             bakery,
             bakeryProduct
         })
-
     } catch (error) {
         res.status(500).json({
             message: "Internal Server error",
@@ -33,9 +32,9 @@ exports.createBakery = async (req, res) => {
         })
     }
 }
-
+ 
 // Controller function for get bakery
-exports.getBakery = async (res, req) => {
+exports.getBakery = async (req, res) => {
     try {
         const bakery = await Bakery.find()
 
@@ -43,7 +42,6 @@ exports.getBakery = async (res, req) => {
             message: "bakery get Successfully",
             bakery
         })
-        
     } catch (error) {
         res.status(500).json({
             message: "Internal Server error",

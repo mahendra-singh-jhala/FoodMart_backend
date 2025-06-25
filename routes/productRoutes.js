@@ -1,6 +1,6 @@
 const express = require("express")
 const productController = require("../controllers/productController")
-const { signIn } = require("../middleware/authMiddleware")
+const { signIn, rolesBasedAccess } = require("../middleware/authMiddleware")
 
 const router = express.Router();
 
@@ -11,12 +11,12 @@ router.get("/", productController.getAllProduct)
 router.get("/id/:id", signIn, productController.findProductById)
 
 // This route handles POST requests for create product
-router.post("/create", productController.CreateFoodProduct)
+router.post("/create", signIn, rolesBasedAccess("admin"),  productController.CreateFoodProduct)
 
 // This route handles PUT requests for update product
-router.put("/:id", productController.updateFoodProduct)
+router.put("/:id", signIn, rolesBasedAccess("admin"), productController.updateFoodProduct)
 
 // This route handles DELETE requests for delete product
-router.delete("/:id", productController.deleteFoodProduct)
+router.delete("/:id", signIn, rolesBasedAccess("admin"), productController.deleteFoodProduct)
 
 module.exports = router

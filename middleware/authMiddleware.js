@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
+// middleware user signIn
 exports.signIn = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -18,16 +19,7 @@ exports.signIn = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY)
-        const userId = decoded.userId;
-
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({
-                message: "User not found"
-            });
-        }
-
-        req.user = user;
+        req.user = decoded;
         next();
     } catch (error) {
         res.status(401).json({
@@ -37,47 +29,22 @@ exports.signIn = async (req, res, next) => {
     }
 }
 
-export const isAdmin = async (req, res, next) => {
-    try {
-        const user = await User.findById(req.user._id);
-        if (user.role !== "admin") {
-            return res.status(401).send("Unauthorized");
+// middleware user role based access
+exports.rolesBasedAccess = (...roles) => {
+    return async (req, res, next) => {
+        try {
+            const user = await User.findById(req.user.userId);
+            if (!user || !roles.includes(user.role)) {
+                return res.status(403).json({
+                    message: "Unauthorized"
+                })
+            }
+            next();
+        } catch (error) {
+            return res.status(500).json({
+                message: "Internal Server Error",
+                error: error.message
+            });
         }
-        next();
-    } catch (error) {
-        res.status(401).json({ 
-            message: "Invalid token", 
-            error: error.message 
-        });
-    }
-};
-
-export const isChef = async (req, res, next) => {
-    try {
-        const user = await User.findById(req.user._id);
-        if (user.role !== "chef") {
-            return res.status(401).send("Unauthorized");
-        }
-        next();
-    } catch (error) {
-        res.status(401).json({ 
-            message: "Invalid token", 
-            error: error.message 
-        });
-    }
-};
-
-export const isBakery = async (req, res, next) => {
-    try {
-        const user = await User.findById(req.user._id);
-        if (user.role !== "bakery") {
-            return res.status(401).send("Unauthorized");
-        }
-        next();
-    } catch (error) {
-        res.status(401).json({ 
-            message: "Invalid token", 
-            error: error.message 
-        });
-    }
-};
+    };
+}
