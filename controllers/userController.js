@@ -2,7 +2,7 @@ const User = require("../models/userModel")
 
 // Controller function for get user by ID
 exports.getUserById = async (req, res) => {
-    const userId = req.user._id
+    const userId = req.user.userId
     try {
         const user = await User.findById(userId)
         .populate('addresses')  
