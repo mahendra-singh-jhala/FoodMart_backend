@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const bakeryModel = new mongoose.Schema({
+const createBakerySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -21,14 +21,19 @@ const bakeryModel = new mongoose.Schema({
         required: true
     },
 
-    openingHours: {
-        type: String,
-        default: "24 hour"
-    },
-
     bakeryImage: {
         type: String,
         required: true
+    },
+
+    BakeryOwner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+
+    openingHours: {
+        type: String,
+        default: "24 hour"
     },
 
     bakeryProduct: [{
@@ -38,6 +43,6 @@ const bakeryModel = new mongoose.Schema({
     }]
 })
 
-const Bakery = mongoose.model("Bakery", bakeryModel)
+const Bakery = mongoose.model("Bakery", createBakerySchema)
 
 module.exports = Bakery
