@@ -33,7 +33,24 @@ exports.createBakery = async (req, res) => {
     }
 }
 
-// Controller function for update product
+// Controller function for get bakery
+exports.getBakeryById = async (req, res) => {
+    const { bakeryId } = req.params.id
+    try {
+        const bakery = await Bakery.findOne({ _id: bakeryId })
+        res.status(200).json({
+            message: "bakery get Successfully",
+            bakery
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal Server error",
+            error: error.message
+        })
+    }
+}
+
+// Controller function for update Bakery
 exports.updateBakery = async (req, res) => {
     try {
         const updateBakery = await Bakery.findByIdAndUpdate(req.params.id, req.body, { new: true })
