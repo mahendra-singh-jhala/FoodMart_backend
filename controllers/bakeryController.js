@@ -36,7 +36,7 @@ exports.createBakery = async (req, res) => {
 // Controller function for update product
 exports.updateBakery = async (req, res) => {
     try {
-        const updateBakery = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const updateBakery = await Bakery.findByIdAndUpdate(req.params.id, req.body, { new: true })
         res.status(200).json({
             message: "Bakery Updated Sucssesfully",
             updateBakery
