@@ -1,10 +1,10 @@
 const Cart = require("../models/cartModel")
 const CartItems = require("../models/cartItem")
-const FoodProduct = require("../models/foodModel")
+const Food = require("../models/foodModel")
 
 // Controller function for find user cart
 exports.findUserCart = async (req, res) => {
-    const userId = req.user._id
+    const userId = req.user.userId
     try {
         const cart = await Cart.findOne({ user: userId })
         if (!cart) {
@@ -45,7 +45,7 @@ exports.findUserCart = async (req, res) => {
 
 // Controller function for add item to cart
 exports.addCartItem = async (req, res) => {
-    const userId = req.user._id;
+    const userId = req.user.userId
     const { foodProductId } = req.body
     try {
         const cart = await Cart.findOne({ user: userId })
@@ -55,7 +55,7 @@ exports.addCartItem = async (req, res) => {
             })
         }
 
-        const foodProduct = await FoodProduct.findById(foodProductId)
+        const foodProduct = await Food.findById(foodProductId)
         if (!foodProduct) {
             return res.status(404).json({
                 message: "Product not found"

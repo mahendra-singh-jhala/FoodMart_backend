@@ -37,7 +37,7 @@ exports.createBakery = async (req, res) => {
 exports.getBakeryById = async (req, res) => {
     const { bakeryId } = req.params.id
     try {
-        const bakery = await Bakery.findOne({ _id: bakeryId })
+        const bakery = await Bakery.findById({ _id: bakeryId })
         res.status(200).json({
             message: "bakery get Successfully",
             bakery

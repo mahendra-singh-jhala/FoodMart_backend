@@ -7,7 +7,6 @@ const router = express.Router();
 // This route handles POST requests for create bakery
 router.post("/", signIn, bakeryController.createBakery)
 
-
 // This route handles Get requests for get bakery by Id
 router.put("/:id", signIn, bakeryController.getBakeryById)
 

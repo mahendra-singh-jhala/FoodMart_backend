@@ -6,7 +6,7 @@ const Order = require("../models/orderModel")
 
 // Controller function for create order
 exports.createOrder = async (req, res) => {
-    const userId = req.user._id
+    const userId = req.user.userId
     const user = req.user
     const { firstname, lastname, city, state, streetAddress, zipCode, phoneNumber } = req.body
 
@@ -80,7 +80,7 @@ exports.createOrder = async (req, res) => {
 
 // Controller function for find user order
 exports.usersOrder = async (req, res) => {
-    const userId = req.user.id;
+    const userId = req.user.userId;
     try {
         const orders = await Order.find({ user: userId}).populate({  path: "orderItems", populate: { path: "food" } }).lean()
         if(!orders ) {
