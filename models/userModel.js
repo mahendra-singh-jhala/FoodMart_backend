@@ -42,8 +42,12 @@ const userSchema = new mongoose.Schema({
     paymentInfo: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Payment_Info"
-    }]
+    }],
 
+    profilePicture: { 
+        type: [String], 
+        default: [] 
+    }
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)

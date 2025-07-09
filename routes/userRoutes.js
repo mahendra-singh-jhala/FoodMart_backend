@@ -8,7 +8,7 @@ const router = express.Router()
 router.get("/user", signIn, userController.getUserById)
 
 // This route handles PUT requests for update user
-router.put("/profileUpdate", signIn, userController.userProfileUpdate)
+router.put("/profileUpdate", signIn, rolesBasedAccess("user"), userController.upload, userController.userProfileUpdate)
 
 
 module.exports = router
