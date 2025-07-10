@@ -1,5 +1,6 @@
 const express = require("express")
 const cors = require("cors")
+const path = require("path")
 const connectdb = require("./config/db")
 const authRouter = require("./routes/authRoutes")
 const productRouter = require("./routes/productRoutes")
@@ -24,6 +25,9 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true 
 }))
+
+// Serve static files from the "uploads" directory
+app.use("/Profileupload", express.static(path.join(__dirname, 'controllers', 'Profileupload')))
 
 // routes
 app.use("/api/auth", authRouter)
